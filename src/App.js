@@ -169,7 +169,38 @@ function App() {
       {/* List-group */}
       <ul className="list-group todo-list">
         {filteredItems.length > 0 &&
-          filteredItems.map((item) => <ToDoListItem></ToDoListItem>)}
+          filteredItems.map((item) => (
+            <li key={item.key} className="list-group-item">
+              <span
+                className={`todo-list-item${
+                  item.done ? " done" : ""
+                } todo-list-item${item.important ? " important" : ""}`}
+              >
+                <span
+                  className="todo-list-item-label"
+                  onClick={() => handleItemDone(item)}
+                >
+                  {item.label}
+                </span>
+
+                <button
+                  onClick={() => handleImportant(item)}
+                  type="button"
+                  className="btn btn-outline-success btn-sm float-right"
+                >
+                  <i className="fa fa-exclamation" />
+                </button>
+
+                <button
+                  onClick={() => handleDeleteItem(item)}
+                  type="button"
+                  className="btn btn-outline-danger btn-sm float-right"
+                >
+                  <i className="fa fa-trash-o" />
+                </button>
+              </span>
+            </li>
+          ))}
       </ul>
 
       {/* Add form */}
